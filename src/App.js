@@ -2,17 +2,23 @@ import React, { useState, useReducer } from 'react';
 
 import './App.css';
 
+const types = {
+  decrementer: 'decrementer',
+  incremnter: 'incrementer',
+};
+
 function reducer(state, action) {
+  console.log(action);
   console.log(`action  %c${action}`, 'color: green; font-weight: bold; ');
-  switch (action) {
-    case 'decrementer':
+  switch (action.type) {
+    case types.decrementer:
       return {
         ...state,
         count: state.count - 1,
         message: 'decrementer',
         background: 'pink',
       };
-    case 'incrementer':
+    case types.incremnter:
       return {
         ...state,
         count: state.count + 1,
@@ -42,11 +48,11 @@ function App() {
   const { count, background, message } = state;
 
   function decrementer() {
-    dispatch('decrementer');
+    dispatch({ type: types.decrementer });
   }
 
   function incrementer() {
-    dispatch('incrementer');
+    dispatch({ type: types.incremnter });
   }
 
   return (
