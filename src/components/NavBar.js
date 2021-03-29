@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import UserContext from './../context/users/userContext';
+import { Link } from 'react-router-dom';
 
 function NavBar(props) {
   const anassContext = useContext(UserContext);
@@ -26,9 +27,9 @@ function NavBar(props) {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
-                {props.users && props.users.length} users
-              </a>
+              <Link class="nav-link active" aria-current="page" to="/movies">
+                movies
+              </Link>
             </li>
           </ul>
         </div>

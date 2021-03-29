@@ -1,9 +1,13 @@
 import { useState, useReducer } from 'react';
 import NavBar from './components/NavBar';
 import Users from './components/Users';
+import Movies from './components/Movies';
 import './App.css';
 
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 import UserState from './context/users/UserState';
+import MovieState from './context/movies/MovieState';
 const types = {
   decrementer: 'decrementer',
   incremnter: 'incrementer',
@@ -58,13 +62,23 @@ function App() {
   }
 
   return (
-    <>
-      <UserState>
-        <NavBar />
-        <div className="container text-center">
-          <Users />
-        </div>
-      </UserState>
+    <BrowserRouter>
+      <MovieState>
+        <UserState>
+          <NavBar />
+          <Switch>
+            <Route exact path="/">
+              <div className="container text-center">
+                <Users />
+              </div>
+            </Route>
+
+            <Route exact path="/movies">
+              <Movies />
+            </Route>
+          </Switch>
+        </UserState>
+      </MovieState>
       {/* <h1
         style={{
           background: background,
@@ -76,7 +90,7 @@ function App() {
       <button onClick={incrementer}>+</button>
       {count}
       <button onClick={decrementer}>-</button> */}
-    </>
+    </BrowserRouter>
   );
 }
 
