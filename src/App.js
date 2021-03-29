@@ -1,7 +1,9 @@
-import React, { useState, useReducer } from 'react';
-
+import { useState, useReducer } from 'react';
+import NavBar from './components/NavBar';
+import Users from './components/Users';
 import './App.css';
 
+import UserState from './context/users/UserState';
 const types = {
   decrementer: 'decrementer',
   incremnter: 'incrementer',
@@ -56,8 +58,14 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1
+    <>
+      <UserState>
+        <NavBar />
+        <div className="container text-center">
+          <Users />
+        </div>
+      </UserState>
+      {/* <h1
         style={{
           background: background,
         }}
@@ -67,8 +75,8 @@ function App() {
       </h1>
       <button onClick={incrementer}>+</button>
       {count}
-      <button onClick={decrementer}>-</button>
-    </div>
+      <button onClick={decrementer}>-</button> */}
+    </>
   );
 }
 
